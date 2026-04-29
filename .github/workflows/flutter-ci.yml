@@ -1,0 +1,123 @@
+name: flutter-ci
+
+on:
+  push:
+    paths:
+      - "apps/lemusic_app/**"
+      - ".github/workflows/flutter-ci.yml"
+  pull_request:
+    paths:
+      - "apps/lemusic_app/**"
+      - ".github/workflows/flutter-ci.yml"
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Ensure flutter app shell exists
+        run: |
+          cd apps/lemusic_app
+          if [ ! -d "android" ]; then
+            flutter create . --platforms=android,windows,macos --org cn.lemwood --project-name lemusic
+            git checkout -- pubspec.yaml lib/ README.md
+          fi
+
+      - name: Pub get
+        run: |
+          cd apps/lemusic_app
+          flutter pub get
+
+      - name: Analyze
+        run: |
+          cd apps/lemusic_app
+          flutter analyze
+
+      - name: Build debug APK
+        run: |
+          cd apps/lemusic_app
+          flutter build apk --debug
+
+      - name: Upload apk artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-apk
+          path: apps/lemusic_app/build/app/outputs/flutter-apk/*.apk
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Ensure flutter app shell exists
+        shell: bash
+        run: |
+          cd apps/lemusic_app
+          if [ ! -d "windows" ]; then
+            flutter create . --platforms=android,windows,macos --org cn.lemwood --project-name lemusic
+            git checkout -- pubspec.yaml lib/ README.md
+          fi
+
+      - name: Pub get
+        shell: bash
+        run: |
+          cd apps/lemusic_app
+          flutter pub get
+
+      - name: Build windows
+        shell: bash
+        run: |
+          cd apps/lemusic_app
+          flutter build windows --debug
+
+      - name: Upload windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: apps/lemusic_app/build/windows/**/*
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Ensure flutter app shell exists
+        run: |
+          cd apps/lemusic_app
+          if [ ! -d "macos" ]; then
+            flutter create . --platforms=android,windows,macos --org cn.lemwood --project-name lemusic
+            git checkout -- pubspec.yaml lib/ README.md
+          fi
+
+      - name: Pub get
+        run: |
+          cd apps/lemusic_app
+          flutter pub get
+
+      - name: Build macos
+        run: |
+          cd apps/lemusic_app
+          flutter build macos --debug
+
+      - name: Upload macos artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-build
+          path: apps/lemusic_app/build/macos/**/*
+

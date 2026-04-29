@@ -1,0 +1,36 @@
+# --- general ---
+.DS_Store
+.idea/
+.vscode/
+
+# --- Node / NestJS ---
+**/node_modules/
+**/dist/
+**/.env
+**/.env.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Flutter / Dart ---
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/build/
+**/.pub-cache/
+**/pubspec.lock
+
+# Android
+**/android/.gradle/
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+
+# iOS/macOS
+**/ios/Pods/
+**/macos/Pods/
+
+# Windows
+**/windows/flutter/ephemeral/
+
