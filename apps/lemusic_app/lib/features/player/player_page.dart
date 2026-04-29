@@ -18,7 +18,7 @@ class _PlayerPageState extends State<PlayerPage> {
     super.initState();
     _facade = PlayerFacade();
     _facade.setQueue([
-      Track(
+      const Track(
         source: SourceId.qqmusic,
         trackId: 'qq_stub_1',
         title: '示例曲目（外部打开）',

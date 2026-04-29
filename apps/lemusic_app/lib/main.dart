@@ -33,7 +33,7 @@ class _MainShellState extends State<MainShell> {
 
   @override
   Widget build(BuildContext context) {
-    final pages = const [
+    const pages = [
       SearchPage(),
       PlayerPage(),
       PlaylistPage(),
@@ -53,4 +53,3 @@ class _MainShellState extends State<MainShell> {
     );
   }
 }
-
