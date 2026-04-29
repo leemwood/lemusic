@@ -22,8 +22,8 @@ class _PlayerPageState extends State<PlayerPage> {
         source: SourceId.qqmusic,
         trackId: 'qq_stub_1',
         title: '示例曲目（外部打开）',
-        artists: const ['LeMusic'],
-        playability: const ExternalOpenPlayability(url: 'https://y.qq.com/'),
+        artists: ['LeMusic'],
+        playability: ExternalOpenPlayability(url: 'https://y.qq.com/'),
       )
     ]);
   }
