@@ -2,13 +2,8 @@ name: bff-ci
 
 on:
   push:
-    paths:
-      - "services/lemusic_bff/**"
-      - ".github/workflows/bff-ci.yml"
   pull_request:
-    paths:
-      - "services/lemusic_bff/**"
-      - ".github/workflows/bff-ci.yml"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -33,4 +28,3 @@ jobs:
 
       - name: Test
         run: npm test -- --runInBand
-

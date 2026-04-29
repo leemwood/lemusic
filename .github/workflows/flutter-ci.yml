@@ -2,13 +2,8 @@ name: flutter-ci
 
 on:
   push:
-    paths:
-      - "apps/lemusic_app/**"
-      - ".github/workflows/flutter-ci.yml"
   pull_request:
-    paths:
-      - "apps/lemusic_app/**"
-      - ".github/workflows/flutter-ci.yml"
+  workflow_dispatch:
 
 jobs:
   android:
@@ -120,4 +115,3 @@ jobs:
         with:
           name: macos-build
           path: apps/lemusic_app/build/macos/**/*
-
