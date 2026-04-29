@@ -21,7 +21,7 @@ jobs:
           cd apps/lemusic_app
           if [ ! -d "android" ]; then
             flutter create . --platforms=android,windows,macos --org cn.lemwood --project-name lemusic
-            git checkout -- pubspec.yaml lib/ README.md
+            git checkout -- pubspec.yaml lib/ README.md test/
           fi
 
       - name: Pub get
@@ -61,7 +61,7 @@ jobs:
           cd apps/lemusic_app
           if [ ! -d "windows" ]; then
             flutter create . --platforms=android,windows,macos --org cn.lemwood --project-name lemusic
-            git checkout -- pubspec.yaml lib/ README.md
+            git checkout -- pubspec.yaml lib/ README.md test/
           fi
 
       - name: Pub get
@@ -97,7 +97,7 @@ jobs:
           cd apps/lemusic_app
           if [ ! -d "macos" ]; then
             flutter create . --platforms=android,windows,macos --org cn.lemwood --project-name lemusic
-            git checkout -- pubspec.yaml lib/ README.md
+            git checkout -- pubspec.yaml lib/ README.md test/
           fi
 
       - name: Pub get
